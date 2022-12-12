@@ -1,6 +1,6 @@
 # fleabit
 
-*fleabit* is a Rust crate that allows reading and writing unaligned bytes. It provides a simple API
+**fleabit** is a Rust crate that allows reading and writing unaligned bytes. It provides a simple API
 and is built on top of bitvec.
 
 It is intended for a multiplayer game library that's in development.
@@ -30,5 +30,5 @@ assert_eq!(reader.u8(), 135);
 
 ## License
 
-*fleabit* is licensed under either the [MIT license](LICENSE-MIT) or
+**fleabit** is licensed under either the [MIT license](LICENSE-MIT) or
 the [Apache-2.0 license](LICENSE-APACHE), at your discretion.
