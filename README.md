@@ -1,4 +1,4 @@
-# bitflow
+# fleabit
 
 Read and write (unaligned) bits with primitives.
 
@@ -6,4 +6,3 @@ Read and write (unaligned) bits with primitives.
 * Simple API.
 * Allows reading and writing unaligned bytes.
 * Build on top of [bitvec](https://github.com/ferrilab/bitvec).
-

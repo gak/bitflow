@@ -1,5 +1,5 @@
 [package]
-name = "bitflow"
+name = "fleabit"
 version = "0.1.0"
 edition = "2021"
 description = "Read and write (unaligned) bits with primitives."

@@ -1,13 +1,13 @@
 mod reader;
 mod writer;
 
-pub use reader::BitFlowReader;
-pub use writer::BitFlowWriter;
+pub use reader::FleaBitReader;
+pub use writer::FleaBitWriter;
 
 /// Return a String that shows bits as 1/0's and is separated by underscores.
 ///
 /// Use a . to indicate there is no valid bit at the position.
-pub(crate) fn debug(b: &BitFlowReader) -> String {
+pub(crate) fn debug(b: &FleaBitReader) -> String {
     let mut s = String::with_capacity(b.bits.len() * 8 + b.bits.len());
     let mut byte_bit = 0;
     loop {
@@ -43,7 +43,7 @@ mod tests {
 
     #[test]
     fn to_string() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false);
         assert_eq!(writer.to_string(), ".......0");
 
@@ -59,7 +59,7 @@ mod tests {
 
     #[test]
     fn bool() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false);
         assert_eq!(writer.to_string(), ".......0");
 
@@ -70,7 +70,7 @@ mod tests {
 
     #[test]
     fn basics() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false);
         assert_eq!(writer.to_string(), ".......0");
         writer.u8(135);
@@ -90,7 +90,7 @@ mod tests {
 
     #[test]
     fn u16() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false); // Just to be misaligned
         writer.u16(0xffff);
         assert_eq!(writer.to_string(), "11111110_11111111_.......1");
@@ -103,7 +103,7 @@ mod tests {
 
     #[test]
     fn usize() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false); // Misaligned
         writer.usize(usize::MAX - 1);
         if usize::BITS == 64 {
@@ -123,7 +123,7 @@ mod tests {
 
     #[test]
     fn usize_sized() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false); // Misaligned
         writer.usize_part(0x01ff0000ff, 33);
         writer.bool(false);
@@ -141,7 +141,7 @@ mod tests {
 
     #[test]
     fn bytes_aligned() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bytes(&[255, 160]);
         assert_eq!(writer.to_string(), "11111111_10100000");
 
@@ -151,7 +151,7 @@ mod tests {
 
     #[test]
     fn bytes_misaligned() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
         writer.bool(false);
         writer.bytes(&[255, 160]);
         assert_eq!(writer.to_string(), "11111110_01000001_.......1");
@@ -163,7 +163,7 @@ mod tests {
 
     #[test]
     fn pad() {
-        let mut writer = BitFlowWriter::new();
+        let mut writer = FleaBitWriter::new();
 
         writer.pad();
         assert_eq!(writer.to_string(), "........");

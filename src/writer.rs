@@ -1,11 +1,11 @@
-use crate::{debug, BitFlowReader};
+use crate::{debug, FleaBitReader};
 use bitvec::vec::BitVec;
 use std::fmt::{Debug, Formatter};
 
 #[derive(Clone)]
-pub struct BitFlowWriter(BitVec<u8>);
+pub struct FleaBitWriter(BitVec<u8>);
 
-impl BitFlowWriter {
+impl FleaBitWriter {
     pub fn new() -> Self {
         Self(BitVec::new())
     }
@@ -92,7 +92,7 @@ impl BitFlowWriter {
     }
 
     /// Warning: This will use the whole set of data, not using pos.
-    pub fn extend_all(&mut self, v: &BitFlowReader) {
+    pub fn extend_all(&mut self, v: &FleaBitReader) {
         self.0.extend_from_bitslice(&v.bits);
     }
 
@@ -105,17 +105,17 @@ impl BitFlowWriter {
         debug(&reader)
     }
 
-    pub fn into_reader(self) -> BitFlowReader {
-        BitFlowReader {
+    pub fn into_reader(self) -> FleaBitReader {
+        FleaBitReader {
             bits: self.0,
             pos: 0,
         }
     }
 }
 
-impl Debug for BitFlowWriter {
+impl Debug for FleaBitWriter {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("BitFlowWriter")
+        f.debug_struct("FleaBitWriter")
             .field("bits", &self.to_string())
             .field("len", &self.len())
             .finish()

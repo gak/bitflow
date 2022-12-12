@@ -4,12 +4,12 @@ use bitvec::vec::BitVec;
 use std::fmt::{Debug, Formatter};
 
 #[derive(Clone)]
-pub struct BitFlowReader {
+pub struct FleaBitReader {
     pub(crate) bits: BitVec<u8>,
     pub(crate) pos: usize,
 }
 
-impl BitFlowReader {
+impl FleaBitReader {
     pub fn from_vec(v: Vec<u8>) -> Self {
         Self {
             bits: BitVec::from_vec(v),
@@ -104,9 +104,9 @@ impl BitFlowReader {
     }
 }
 
-impl Debug for BitFlowReader {
+impl Debug for FleaBitReader {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("BitFlowReader")
+        f.debug_struct("FleaBitReader")
             .field("bits", &self.to_string())
             .field("pos", &self.pos)
             .field("len", &self.len())
@@ -114,13 +114,13 @@ impl Debug for BitFlowReader {
     }
 }
 
-impl From<Vec<u8>> for BitFlowReader {
+impl From<Vec<u8>> for FleaBitReader {
     fn from(v: Vec<u8>) -> Self {
         Self::from_vec(v)
     }
 }
 
-impl From<&[u8]> for BitFlowReader {
+impl From<&[u8]> for FleaBitReader {
     fn from(v: &[u8]) -> Self {
         Self::from_slice(v)
     }
