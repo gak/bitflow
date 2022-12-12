@@ -2,7 +2,7 @@
 name = "fleabit"
 version = "0.1.0"
 edition = "2021"
-description = "Read and write (unaligned) bits with primitives."
+description = "Read and write unaligned bytes."
 license = "MIT OR Apache-2.0"
 
 [dependencies]
