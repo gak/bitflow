@@ -1,3 +1,4 @@
+#[doc = include_str!("../README.md")]
 mod reader;
 mod writer;
 
@@ -6,7 +7,7 @@ pub use writer::FleaBitWriter;
 
 /// Return a String that shows bits as 1/0's and is separated by underscores.
 ///
-/// Use a . to indicate there is no valid bit at the position.
+/// Use a `.` (full stop) to indicate there is no valid bit at the position.
 pub(crate) fn debug(b: &FleaBitReader) -> String {
     let mut s = String::with_capacity(b.bits.len() * 8 + b.bits.len());
     let mut byte_bit = 0;
